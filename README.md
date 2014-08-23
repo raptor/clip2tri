@@ -1,7 +1,7 @@
 clip2tri
 ========
 
-Using clipper and poly2tri together for more robust triangulation
+Using clipper and poly2tri together for robust triangulation
 
 ## About
 
@@ -15,7 +15,7 @@ This code ties it all together.
 
 ## Details
 
-Bitfighter generates bot nav-mesh zones using the following process (more or less):
+Bitfighter generates bot nav-mesh zones using the following process (more or less) using floating point data as the input:
 
 1. Aggregate all polygons and holes
 2. Feed data to **clipper** and have it return a PolyTree structure
