@@ -4,6 +4,14 @@ cmake_minimum_required(VERSION 2.8.8)
 # Set CMake project name
 project(CLIP2TRI)
 
+# No creating project files in-source.  Bad, evil things happen
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" _insource)
+if (_insource)
+        message(SEND_ERROR "No building in-source.  You must run CMake from the \"build\" directory.")
+        message(FATAL_ERROR "Remove the file CMakeCache.txt in ${CMAKE_SOURCE_DIR} first.")
+endif()
+
+
 if(NOT DEFINED BUILD_SHARED_LIBS)
   set(BUILD_SHARED_LIBS ON)
 endif(NOT DEFINED BUILD_SHARED_LIBS)
