@@ -54,7 +54,7 @@ endif(BUILD_SHARED_LIBS)
 
 if(BUILD_STATIC_LIBS)
   add_library(clip2tri-static clip2tri/clip2tri.cpp)
-  target_link_libraries(clip2tri-static clpper-static poly2tri-static ${M_LIBRARY})
+  target_link_libraries(clip2tri-static clipper-static poly2tri-static ${M_LIBRARY})
   install(TARGETS clip2tri-static
     RUNTIME DESTINATION ${BIN_DIR}
     LIBRARY DESTINATION ${LIB_DIR}

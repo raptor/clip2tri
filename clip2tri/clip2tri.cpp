@@ -6,9 +6,13 @@
  * Originally from the bitfighter source code
  */
 
+#include "clip2tri.h"
+#include "../poly2tri/poly2tri.h"
+
 #include <cstdio>
 
-#include "clip2tri.h"
+
+using namespace p2t;
 
 namespace c2t
 {
@@ -17,6 +21,23 @@ namespace c2t
 static const F32 CLIPPER_SCALE_FACT = 1000.0f;
 static const F32 CLIPPER_SCALE_FACT_INVERSE = 0.001f;
 
+
+/////////////////////////////////
+
+Point::Point()
+{
+   x = 0;
+   y = 0;
+}
+
+Point::Point(const Point& pt)
+{
+   x = pt.x;
+   y = pt.y;
+}
+
+
+/////////////////////////////////
 
 clip2tri::clip2tri()
 {

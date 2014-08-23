@@ -25,6 +25,20 @@ typedef unsigned int     U32;
 typedef float            F32;
 typedef double           F64;
 
+
+struct Point
+{
+   F32 x;
+   F32 y;
+
+   Point();
+   Point(const Point &pt);
+
+   template<class T, class U>
+   Point(T in_x, U in_y) { x = static_cast<F32>(in_x); y = static_cast<F32>(in_y); }
+};
+
+
 class clip2tri
 {
 public:
@@ -38,13 +52,6 @@ public:
 
    bool triangulateComplex(vector<Point> &outputTriangles, const Path &outline,
          const PolyTree &polyTree, bool ignoreFills = true, bool ignoreHoles = false);
-};
-
-
-struct Point
-{
-   F32 x;
-   F32 y;
 };
 
 } /* namespace c2t */
