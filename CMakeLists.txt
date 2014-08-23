@@ -44,7 +44,7 @@ if(MSVC)
 endif(MSVC)
 
 if(BUILD_SHARED_LIBS)
-  add_library(clip2tri clip2tri/clip2tri.cpp)
+  add_library(clip2tri SHARED clip2tri/clip2tri.cpp)
   target_link_libraries(clip2tri clipper poly2tri ${M_LIBRARY})
   install(TARGETS clip2tri
     RUNTIME DESTINATION ${BIN_DIR}
@@ -53,7 +53,7 @@ if(BUILD_SHARED_LIBS)
 endif(BUILD_SHARED_LIBS)
 
 if(BUILD_STATIC_LIBS)
-  add_library(clip2tri-static clip2tri/clip2tri.cpp)
+  add_library(clip2tri-static STATIC clip2tri/clip2tri.cpp)
   target_link_libraries(clip2tri-static clipper-static poly2tri-static ${M_LIBRARY})
   install(TARGETS clip2tri-static
     RUNTIME DESTINATION ${BIN_DIR}
