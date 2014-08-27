@@ -50,7 +50,32 @@ clip2tri::~clip2tri()
 }
 
 
-// Same as above, using slightly different input structure
+void clip2tri::triangulate(const vector<vector<Point> > inputPolygons, vector<Point> &outputTriangles,
+      const vector<Point> boundingPolygon)
+{
+   // Use clipper to clean.  This upscales the floating point input
+   PolyTree solution;
+   mergePolysToPolyTree(inputPolygons, solution);
+
+   Path bounds = upscaleClipperPoints(boundingPolygon);
+
+   // This will downscale the Clipper output and use poly2tri to triangulate
+   triangulateComplex(outputTriangles, bounds, solution);
+}
+
+
+Path clip2tri::upscaleClipperPoints(const vector<Point> &inputPolygon)
+{
+   Path outputPolygon;
+   outputPolygon.resize(inputPolygon.size());
+
+   for(S32 i = 0; i < inputPolygon.size(); i++)
+      outputPolygon[i] = IntPoint(S64(inputPolygon[i].x * CLIPPER_SCALE_FACT), S64(inputPolygon[i].y * CLIPPER_SCALE_FACT));
+
+   return outputPolygon;
+}
+
+
 Paths clip2tri::upscaleClipperPoints(const vector<vector<Point> > &inputPolygons)
 {
    Paths outputPolygons;
