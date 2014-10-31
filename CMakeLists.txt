@@ -62,10 +62,8 @@ if(BUILD_STATIC_LIBS)
 endif(BUILD_STATIC_LIBS)
 
 
-# Local Variables:
-# tab-width: 8
-# mode: cmake
-# indent-tabs-mode: t
-# End:
-# ex: shiftwidth=2 tabstop=8
-
+# Install header files
+install(DIRECTORY clip2tri/ 
+    DESTINATION include/clip2tri
+    FILES_MATCHING PATTERN "*.h"
+)
